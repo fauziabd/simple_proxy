@@ -10,11 +10,8 @@ COPY generate-config.sh /usr/local/bin/generate-config.sh
 # Make the script executable
 RUN chmod +x /usr/local/bin/generate-config.sh
 
-# Run the script to generate Nginx configuration
-RUN /usr/local/bin/generate-config.sh
-
-# Expose port 80
-EXPOSE 80
+# Set the working directory
+WORKDIR /app
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
