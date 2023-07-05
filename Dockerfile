@@ -5,7 +5,7 @@ FROM nginx
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy the custom Nginx configuration generator script
-COPY generate-config.sh ./generate-config.sh
+COPY generate-config.sh /usr/local/bin/generate-config.sh
 
 # Make the script executable
 RUN chmod +x /usr/local/bin/generate-config.sh
