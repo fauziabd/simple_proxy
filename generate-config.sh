@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Read the reverse proxy configurations from the .env file
 while IFS='=' read -r key value; do
   if [[ $key =~ ^from_ && $value ]]; then
