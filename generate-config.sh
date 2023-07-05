@@ -24,4 +24,7 @@ while IFS='=' read -r key value; do
       echo "}" >> "/etc/nginx/conf.d/reverse-proxy-$num.conf"
     fi
   fi
-done < .env
+done < "$(find / -name '.env' 2>/dev/null)"
+
+# Start Nginx
+nginx -g "daemon off;"
