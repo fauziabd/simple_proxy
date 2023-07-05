@@ -21,22 +21,20 @@ RUN echo '#!/bin/sh' > /usr/local/bin/generate-config.sh && \
     echo '    to_value=${!to_var}' >> /usr/local/bin/generate-config.sh && \
     echo '    if [[ $from_value && $to_value ]]; then' >> /usr/local/bin/generate-config.sh && \
     echo '        echo "Generating reverse proxy configuration for $from_value to $to_value"' >> /usr/local/bin/generate-config.sh && \
-    echo '        echo "server {" >> \"/etc/nginx/conf.d/reverse-proxy-$num.conf\"' >> /usr/local/bin/generate-config.sh && \
-    echo '        echo "    listen 80;" >> \"/etc/nginx/conf.d/reverse-proxy-$num.conf\"' >> /usr/local/bin/generate-config.sh && \
-    echo '        echo "    server_name $from_value;" >> \"/etc/nginx/conf.d/reverse-proxy-$num.conf\"' >> /usr/local/bin/generate-config.sh && \
-    echo '        echo "    location / {" >> \"/etc/nginx/conf.d/reverse-proxy-$num.conf\"' >> /usr/local/bin/generate-config.sh && \
-    echo '        echo "        proxy_pass http://$to_value;" >> \"/etc/nginx/conf.d/reverse-proxy-$num.conf\"' >> /usr/local/bin/generate-config.sh && \
-    echo '        echo "        proxy_set_header Host \$host;" >> \"/etc/nginx/conf.d/reverse-proxy-$num.conf\"' >> /usr/local/bin/generate-config.sh && \
-    echo '        echo "        proxy_set_header X-Real-IP \$remote_addr;" >> \"/etc/nginx/conf.d/reverse-proxy-$num.conf\"' >> /usr/local/bin/generate-config.sh && \
-    echo '        echo "    }" >> \"/etc/nginx/conf.d/reverse-proxy-$num.conf\"' >> /usr/local/bin/generate-config.sh && \
-    echo '        echo "}" >> \"/etc/nginx/conf.d/reverse-proxy-$num.conf\"' >> /usr/local/bin/generate-config.sh && \
+    echo '        echo "server {" >> "/etc/nginx/conf.d/reverse-proxy-$num.conf"' >> /usr/local/bin/generate-config.sh && \
+    echo '        echo "    listen 80;" >> "/etc/nginx/conf.d/reverse-proxy-$num.conf"' >> /usr/local/bin/generate-config.sh && \
+    echo '        echo "    server_name $from_value;" >> "/etc/nginx/conf.d/reverse-proxy-$num.conf"' >> /usr/local/bin/generate-config.sh && \
+    echo '        echo "    location / {" >> "/etc/nginx/conf.d/reverse-proxy-$num.conf"' >> /usr/local/bin/generate-config.sh && \
+    echo '        echo "        proxy_pass http://$to_value;" >> "/etc/nginx/conf.d/reverse-proxy-$num.conf"' >> /usr/local/bin/generate-config.sh && \
+    echo '        echo "        proxy_set_header Host \$host;" >> "/etc/nginx/conf.d/reverse-proxy-$num.conf"' >> /usr/local/bin/generate-config.sh && \
+    echo '        echo "        proxy_set_header X-Real-IP \$remote_addr;" >> "/etc/nginx/conf.d/reverse-proxy-$num.conf"' >> /usr/local/bin/generate-config.sh && \
+    echo '        echo "    }" >> "/etc/nginx/conf.d/reverse-proxy-$num.conf"' >> /usr/local/bin/generate-config.sh && \
+    echo '        echo "}" >> "/etc/nginx/conf.d/reverse-proxy-$num.conf"' >> /usr/local/bin/generate-config.sh && \
     echo '    fi' >> /usr/local/bin/generate-config.sh && \
     echo 'done' >> /usr/local/bin/generate-config.sh && \
     echo 'echo "Nginx configuration generated successfully."' >> /usr/local/bin/generate-config.sh && \
-    chmod +x /usr/local/bin/generate-config.sh
-
-# Generate Nginx configuration
-RUN generate-config.sh
+    chmod +x /usr/local/bin/generate-config.sh && \
+    /usr/local/bin/generate-config.sh
 
 # Expose port 80
 EXPOSE 80
